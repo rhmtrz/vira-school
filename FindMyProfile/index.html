@@ -37,25 +37,31 @@
           id: 1,
           name: "احمد رضاهستم",
           class: "صنف  هفت را میخوانم",
-          hobby: "روباتیک را دوست دارم"
+          hobby: "روباتیک را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 2,
           name: "علی جان",
           class: "صنف  هفت را میخوانم",
-          hobby: "مضمون فیزیک را دوست دارم"
+          hobby: "مضمون فیزیک را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 3,
           name: "علی سینا",
           class: " صنف  نهم را میخوانم",
-          hobby: "مضمون ریاضی را دوست دارم"
+          hobby: "مضمون ریاضی را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 4,
           name: "فاطمه",
           class: "صنف نهم مکتب هستم",
-          hobby: "مضمون دری را دوست دارم"
+          hobby: "مضمون دری را دوست دارم",
+          schoolName: "Marefat high school",
+          age: "",
+          height: "",
         },
       ]
 
@@ -70,7 +76,13 @@
         const studentId = idInputTag.value
          //  فورمول یا فانکشن جستجوی را که نوشته کرده بودیم را اینجا صدا میکنیم 
           //  برای فانکشن جستجو آیدی شاگرد میدهیم
-        findMyProfile(studentId)
+          if (studentId > studnetsData.length) {
+            const message = `Only ${studnetsData.length} students are in the class`
+            errorMessage.textContent = message
+          } else {
+            findMyProfile(studentId)
+          }
+          
       })
 
       const errorMessage = document.getElementById("errorMessage")
@@ -80,18 +92,14 @@
       function findMyProfile(studentId) {
 
         const studentProfile = studnetsData.find(studentObj => studentObj.id == studentId)
+        if(studentProfile) {
+          showMyProfile(studentProfile)
+          errorMessage.textContent = ""
+        } else {
+          const message = "شخصی که شما میخواهید جستجو کنید وجود ندارد"
+          errorMessage.textContent = message
+        }    
         
-          if(studentProfile) {
-            showMyProfile(studentProfile)
-            errorMessage.textContent = ""
-          } else {
-            const message = "شخصی که شما میخواهید جستجو کنید وجود ندارد"
-            errorMessage.textContent = message
-            
-          }    
-        
-        
-
       }
 
       function showMyProfile(studentProfile) {
