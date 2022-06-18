@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>My Profile</h1>
+        <h2 id="studnetID">ID</h2>
+        <h2 id="studnetName">Name</h2>
+        <h2 id="studentClass">Class</h2>
+        <h2 id="studentHobby">Hobby</h2>
+        
+        <label style="font-size: 30px;">What is your ID</label>
+        <input style="border: 2px solid back; font-size: 30px;" height="20px"  type="text" id="inputIdTag" />
+        <div style="margin-bottom: 30px;"></div>
+        <div class="button-container">
+          <button id="profileButton" class="button">Find my Information</button>
+        </div>
+      </div>
+    </main>
+    <!-- javascript -->
+    <script>
+      // اگر بخواهیم ارزش یا دادههای یک متغیر را تغیر بدهیم، ما باید از کلمه لیت برای ساخت متغیر استفاده کنیم 
+      let count = 0; 
+
+      // let arr = new Array() 
+      // arr.push({
+      //   id: 1,
+      //   name: ""
+      // })
+
+      const allStudents = [
+        {
+          id: 1,
+          name: "Shiori chan",
+          class:"Javascript",
+          hobby: "Sleeping and chikan"
+        },
+        {
+          id: 2,
+          name: "Rahmat chan",
+          class:"Golang",
+          hobby: "Billiar and mental damage"
+        },
+        {
+          id: 3,
+          name: "Fuafua chan",
+          class:"Python",
+          hobby: "beko"
+        },
+        {
+          id: 4,
+          name: "Shiori chan",
+          class:"HTML",
+          hobby: "by a mountan"
+        },
+      ]
+
+      const inputIdTag = document.getElementById("inputIdTag")
+
+      const studnetIdTag = document.getElementById('studnetID')
+      const studnetNameTag = document.getElementById('studnetName')
+      const studnetClassTag = document.getElementById('studentClass')
+      const studentHobbyTag = document.getElementById('studentHobby')
+
+      const profileButton = document.getElementById("profileButton")
+      profileButton.addEventListener('click', () => {
+        const studentId = inputIdTag.value
+        console.log(studentId)
+        findMyProfile(studentId)
+      })
+
+      let findedSt
+
+      function findMyProfile(studentId) {
+        findedSt = allStudents.find(s => s.id == studentId)
+        console.log(findedSt)
+        studnetIdTag.textContent = findedSt.id
+        studnetNameTag.textContent = findedSt.name
+        studnetClassTag.textContent = findedSt.class
+        studentHobbyTag.textContent = findedSt.hobby
+      }
+    </script>
+  </body>
+</html>

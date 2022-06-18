@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find My Profile</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>My Profile</h1>
+        <h2 >ID: <span id="studnetIdTag"></span></h2>
+        <h2 >Name: <span id="studnetNameTag"></span></h2>
+        <h2 >Class: <span id="studentClassTag"></span></h2>
+        <h2 >Hobby: <span id="studnetHobbyTag"></span></h2>
+        
+        <label style="font-size: 30px;">Input Student ID</label>
+        <input
+          id="idInputTag"
+          style="border: 2px solid back; font-size: 40px; margin-left: 20px;" 
+          height="20px"  
+          type="text" />
+          <div id="errorMessage" style="font-size: 20px; color: red"></div>
+        <div style="margin-bottom: 30px;"></div>
+        <div class="button-container">
+          <button id="searchProfileButton" class="button">Search</button>
+        </div>
+      </div>
+    </main>
+    <!-- javascript -->
+    <script>
+      //   اینجا ما لیست از شاگردان را داخل یک آرای ذغیره کردیم
+      // بعد از بین این لیست مشخصات یک شاگرد را توسط آیدی آن پیدا میکنیم    
+      const studnetsData = [
+        {
+          id: 1,
+          name: "احمد رضاهستم",
+          class: "صنف  هفت را میخوانم",
+          hobby: "روباتیک را دوست دارم"
+        },
+        {
+          id: 2,
+          name: "علی جان",
+          class: "صنف  هفت را میخوانم",
+          hobby: "مضمون فیزیک را دوست دارم"
+        },
+        {
+          id: 3,
+          name: "علی سینا",
+          class: " صنف  نهم را میخوانم",
+          hobby: "مضمون ریاضی را دوست دارم"
+        },
+        {
+          id: 4,
+          name: "فاطمه",
+          class: "صنف نهم مکتب هستم",
+          hobby: "مضمون دری را دوست دارم"
+        },
+      ]
+
+
+      //  در قدم اول دکمه جستجو یا سیرچ را انتخاب میکنیم
+      const searchProfileButton = document.getElementById("searchProfileButton")
+      // بعد از انتخاب دکمه برایش اوینت کلیک تعریف یا میکنیم
+      searchProfileButton.addEventListener('click', () => {
+        //  در داخل اوینت آیدی شاگر از انپوت میگیریم
+        const idInputTag = document.getElementById("idInputTag")
+         //  آیدی شاگرد
+        const studentId = idInputTag.value
+         //  فورمول یا فانکشن جستجوی را که نوشته کرده بودیم را اینجا صدا میکنیم 
+          //  برای فانکشن جستجو آیدی شاگرد میدهیم
+        findMyProfile(studentId)
+      })
+
+      const errorMessage = document.getElementById("errorMessage")
+
+
+       //  فانکشن شاگر اینجا نوشته کردیم
+      function findMyProfile(studentId) {
+
+        const studentProfile = studnetsData.find(studentObj => studentObj.id == studentId)
+        
+          if(studentProfile) {
+            showMyProfile(studentProfile)
+            errorMessage.textContent = ""
+          } else {
+            const message = "شخصی که شما میخواهید جستجو کنید وجود ندارد"
+            errorMessage.textContent = message
+            
+          }    
+        
+        
+
+      }
+
+      function showMyProfile(studentProfile) {
+        const studnetIdTag = document.getElementById('studnetIdTag')
+        const studnetNameTag = document.getElementById('studnetNameTag')
+        const studnetClassTag = document.getElementById('studentClassTag')
+        const studnetHobbyTag = document.getElementById('studnetHobbyTag')
+
+        studnetIdTag.textContent = studentProfile.id
+        studnetNameTag.textContent = studentProfile.name
+        studnetClassTag.textContent = studentProfile.class
+        studnetHobbyTag.textContent = studentProfile.class
+      }
+    </script>
+  </body>
+</html>
