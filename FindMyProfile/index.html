@@ -91,6 +91,14 @@
        //  فانکشن شاگر اینجا نوشته کردیم
       function findMyProfile(studentId) {
 
+        console.log(Number(studentId))
+
+        console.log(typeof(studentId))
+
+        console.log(studentId)
+
+        console.log(studentId)
+
         const studentProfile = studnetsData.find(studentObj => studentObj.id == studentId)
         if(studentProfile) {
           showMyProfile(studentProfile)
