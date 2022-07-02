@@ -10,13 +10,6 @@ h1 {
   font-size: 6rem;
   color: green;
 }
-p {
-  font-size: 10rem;
-  font-weight: bold;
-  margin: 0 0 2rem;
-  color: red;
-}
-
 
 button {
   width: fit-content;

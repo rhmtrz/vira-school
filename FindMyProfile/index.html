@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Find My Profile</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="navbar.css" />
   </head>
   <body>
     <main>
+      <div class="nav-box">
+        <ul class="nav-bar">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./student-list.html">Student List</a></li>
+        </ul>
+      </div>
       <div class="container">
-        <h1>My Profile</h1>
+        <h1 class="page-title">Student Profile</h1>
         <h2 >ID: <span id="studnetIdTag"></span></h2>
         <h2 >Name: <span id="studnetNameTag"></span></h2>
         <h2 >Class: <span id="studentClassTag"></span></h2>
@@ -37,25 +44,31 @@
           id: 1,
           name: "احمد رضاهستم",
           class: "صنف  هفت را میخوانم",
-          hobby: "روباتیک را دوست دارم"
+          hobby: "روباتیک را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 2,
           name: "علی جان",
           class: "صنف  هفت را میخوانم",
-          hobby: "مضمون فیزیک را دوست دارم"
+          hobby: "مضمون فیزیک را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 3,
           name: "علی سینا",
           class: " صنف  نهم را میخوانم",
-          hobby: "مضمون ریاضی را دوست دارم"
+          hobby: "مضمون ریاضی را دوست دارم",
+          schoolName: "Vira school"
         },
         {
           id: 4,
           name: "فاطمه",
           class: "صنف نهم مکتب هستم",
-          hobby: "مضمون دری را دوست دارم"
+          hobby: "مضمون دری را دوست دارم",
+          schoolName: "Marefat high school",
+          age: "",
+          height: "",
         },
       ]
 
@@ -70,7 +83,13 @@
         const studentId = idInputTag.value
          //  فورمول یا فانکشن جستجوی را که نوشته کرده بودیم را اینجا صدا میکنیم 
           //  برای فانکشن جستجو آیدی شاگرد میدهیم
-        findMyProfile(studentId)
+          if (studentId > studnetsData.length) {
+            const message = `Only ${studnetsData.length} students are in the class`
+            errorMessage.textContent = message
+          } else {
+            findMyProfile(studentId)
+          }
+          
       })
 
       const errorMessage = document.getElementById("errorMessage")
@@ -79,19 +98,23 @@
        //  فانکشن شاگر اینجا نوشته کردیم
       function findMyProfile(studentId) {
 
-        const studentProfile = studnetsData.find(studentObj => studentObj.id == studentId)
-        
-          if(studentProfile) {
-            showMyProfile(studentProfile)
-            errorMessage.textContent = ""
-          } else {
-            const message = "شخصی که شما میخواهید جستجو کنید وجود ندارد"
-            errorMessage.textContent = message
-            
-          }    
-        
-        
+        console.log(Number(studentId))
 
+        console.log(typeof(studentId))
+
+        console.log(studentId)
+
+        console.log(studentId)
+
+        const studentProfile = studnetsData.find(studentObj => studentObj.id == studentId)
+        if(studentProfile) {
+          showMyProfile(studentProfile)
+          errorMessage.textContent = ""
+        } else {
+          const message = "شخصی که شما میخواهید جستجو کنید وجود ندارد"
+          errorMessage.textContent = message
+        }    
+        
       }
 
       function showMyProfile(studentProfile) {
